@@ -30,6 +30,7 @@ img_distill <- function(
       evaluated = case_when(
         str_detect(image_ca, "no evidence of cancer") ~ T,
         str_detect(image_ca, "evidence of cancer") &
+          # the other option is not stated / indeterminate.
           str_detect(image_overall, "Progressing|Improving|Stable|Mixed") ~
           T,
         T ~ F
@@ -48,7 +49,10 @@ img_distill <- function(
       event_type = "img"
     ) %>%
     dplyr::rename(dob_event_days = image_scan_int) %>%
-    dplyr::relocate(event_type, .before = dob_event_days)
+    dplyr::relocate(event_type, .after = dob_event_days)
+
+  rtn %<>%
+    add_response_letter_codes(.)
 
   if (return_minimal) {
     # drops the original columns.
@@ -57,9 +61,11 @@ img_distill <- function(
         cohort,
         record_id,
         dob_event_days,
+        event_type,
         evaluated,
         cancer,
-        status_change
+        status_change,
+        resp_code_cs
       )
   }
 
