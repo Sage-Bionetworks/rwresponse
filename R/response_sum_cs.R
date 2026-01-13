@@ -5,10 +5,10 @@
 #' @details
 #'  Design note: This is a bulky function.  Time filtering has to be done in this function in addition to the summarization.  The reason is that the longitudinal versions (if ever written) will require baseline images to be fed in too, to establish where cancer has been found so far.
 #' Confirmed response breakdown (the first one is a subset):
-# - not evaluable or stable disease, 0 or more times.
-# - response.
-# - not evaluable, 0 or more times.
-# - stable or response, 1 or more times.
+#' - not evaluable or stable disease, 0 or more times.
+#' - response.
+#' - not evaluable, 0 or more times.
+#' - stable or response, 1 or more times.
 
 #' @param df_time A row of events to calculate responses to.  Must have columns record_id, dob_event_min, dob_event_max.
 #' @param df_time_key_cols A character vector specifying the primary keys for this dataset (must be unique).

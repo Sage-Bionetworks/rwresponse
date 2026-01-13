@@ -23,7 +23,7 @@ add_response_letter_codes <- function(
       )
     )
 
-  if (any(rtn$response_code %in% "e")) {
+  if (any(rtn$resp_code_cs %in% "e")) {
     cli_abort("Unknown response code case encountered")
   }
   return(rtn)
